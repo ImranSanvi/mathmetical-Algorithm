@@ -1,0 +1,33 @@
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+void generatePermutations(vector<int>& nums, int start, int n) {
+    if (start == n) {
+        for (int x : nums) {
+            cout << x << " ";
+        }
+        cout << endl;
+        return;
+    }
+
+    for (int i = start; i < n; ++i) {
+        swap(nums[start], nums[i]);
+        generatePermutations(nums, start + 1, n);
+        swap(nums[start], nums[i]);
+    }
+}
+
+int main() {
+    int n = 3;
+    vector<int> nums;
+
+    for (int i = 1; i <= n; ++i) {
+        nums.push_back(i);
+    }
+
+    generatePermutations(nums, 0, n);
+
+    return 0;
+}
